@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -21,6 +23,7 @@ html {
  */
 
 body {
+    font-family: 'Orbitron', sans-serif;
     margin: 0;
 }
 
@@ -366,5 +369,76 @@ html {
     padding: 0 10px;
 }
 
+.main {
+    background: url(../images/bg.jpg) no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
 
+.info {
+    display: flex;
+    padding: 20px 0;
+    gap: 50px;
+}
 
+.form {
+    flex: 1;
+}
+
+.textarea {
+    width: 100%;
+    background-color: #010039;
+    color: #00F0FF;
+    border: 2px solid #00F0FF;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+    caret-color: #FF00F5;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    resize: none;
+    border-radius: 10px;
+}
+
+.textarea::placeholder {
+    color: #ffffff;
+    opacity: 0.6;
+}
+
+.result {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    flex: 1;
+}
+
+.paragraph {
+    border: 1px solid #00F0FF;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.button__wrapper {
+    text-align: end;
+}
+
+.button {
+    display: inline-block;
+    position: relative;
+    background: transparent;
+    color: #0ff;
+    border: 2px solid #0ff;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow:
+            0 0 10px rgba(0, 255, 255, 0.5),
+            0 0 20px rgba(0, 255, 255, 0.3),
+            inset 0 0 10px rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+}
