@@ -13,8 +13,9 @@ class NoteStorage {
         localStorage.setItem('text', JSON.stringify(this.data));
     }
 
-    edit() {
-
+    edit(value, index) {
+        this.data[index] = value
+        localStorage.setItem('text', JSON.stringify(this.data));
     }
 
     delete(index) {
@@ -31,6 +32,7 @@ class NoteStorage {
     const textarea = document.querySelector('.js-textarea');
     const button = document.querySelector('.js-button');
     const result = document.querySelector('.js-result');
+    let editIndex = -1;
 
     const storage = new NoteStorage();
 
@@ -43,10 +45,16 @@ class NoteStorage {
 
         if (text === '') return;
 
-        storage.add(text);
+        if (editIndex === -1) {
+            storage.add(text);
+        } else {
+            storage.edit(text, editIndex);
+        }
+
         write(storage.all());
 
         textarea.value = '';
+        editIndex = -1;
     })
 
     function write(data) {
@@ -55,20 +63,29 @@ class NoteStorage {
         data.forEach(item => {
             item = item.replaceAll("\n", '<br>')
 
-            let span = document.createElement('span');
-            span.classList.add('delete');
+            let spanDelete = document.createElement('span');
+            spanDelete.classList.add('delete');
+
+            let spanEdit = document.createElement('span');
+            spanEdit.classList.add('edit');
 
             let p = document.createElement('p');
             p.innerHTML = item;
             p.classList.add('paragraph');
-            p.appendChild(span);
+            p.appendChild(spanEdit);
+            p.appendChild(spanDelete);
 
             result.appendChild(p);
 
-            span.addEventListener('click', (e) => {
+            spanDelete.addEventListener('click', () => {
                 let index = [].slice.call(result.children).indexOf(p)
                 storage.delete(index);
                 p.remove();
+            })
+
+            spanEdit.addEventListener('click', () => {
+                textarea.value = item;
+                editIndex = [].slice.call(result.children).indexOf(p);
             })
         })
     }
